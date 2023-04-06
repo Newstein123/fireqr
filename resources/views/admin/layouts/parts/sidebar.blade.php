@@ -32,10 +32,9 @@
             <li>
                 <a href="mailbox.html"><i class="fa fa-cogs"></i> <span class="nav-label"> Setting  </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="mailbox.html">Inbox</a></li>
-                    <li><a href="mail_detail.html">Email view</a></li>
-                    <li><a href="mail_compose.html">Compose email</a></li>
-                    <li><a href="email_template.html">Email templates</a></li>
+                    <li><a href="mailbox.html"> Account Setting </a></li>
+                    <li><a href="mail_compose.html"> Grant Permission </a></li>
+                    <li><a href="email_template.html"> General Setting </a></li>    
                 </ul>
             </li>
         </ul>
