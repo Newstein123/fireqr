@@ -13,9 +13,6 @@
             </li>
         </ol>
     </div>
-    <div class="col-lg-2">
-
-    </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
 <div class="row">
@@ -24,7 +21,7 @@
         <div class="ibox-title">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <h5> Product Detail </h5>
-                <a href="{{ route('productIndex') }}" class="btn btn-secondary"> <i class="fa fa-plus mr-2"></i> Go Back </a>
+                <a href="{{ route('productIndex') }}" class="btn btn-secondary"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
             </div>
         </div>
         <div class="ibox-content">
@@ -60,7 +57,9 @@
                         </tr>
                     </tbody>
                 </table>
-                
+                <div class="print-visible text-center">
+                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('\public\img\logo\logo.jpg')->generate('/product/'.$product->id)) !!} ">
+                </div>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@
         <div class="ibox-title">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <h5> Product Table </h5>
-                <a href="{{ route('productCreate') }}" class="btn btn-secondary"> <i class="fa fa-plus mr-2"></i> Add Product </a>
+                <a href="{{ route('productCreate') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-plus mr-2"></i> Add Product </a>
             </div>
         </div>
         <div class="ibox-content">
