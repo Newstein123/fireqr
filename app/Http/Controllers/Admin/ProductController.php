@@ -36,12 +36,26 @@ class ProductController extends Controller
             'type.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်',
         ]);
 
+        $imagePath = [];
+
         foreach ($request->file('images') as $image) {
             $filename = time() .'_'.$image->getClientOriginalName();
             $path = $image->storeAs('/img/qr-image', $filename); 
+            $imagePath[] = $path;
         }
 
+        Product::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'model_no' => $request->model_no,
+            'manufactured_year' => $request->manufactured_year,
+            'start_date' => $request->start_date,
+            'usage' => $request->usage,
+            'description' => $request->detail,
+            'image' => json_encode($imagePath), 
+            'publish' => 0,
+        ]);
+
         echo "success";
-         
     }
 }
