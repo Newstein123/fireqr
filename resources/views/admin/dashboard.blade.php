@@ -39,7 +39,7 @@
 @endphp
 <div>
     @foreach (json_decode($product->image) as $image)
-        <img src="{{asset('/img/qr-image/'.$ima)}}" alt="">
+        <img src="{{asset('/img/qr-image/'.$image)}}" alt="">
     @endforeach
 </div>
 @endsection

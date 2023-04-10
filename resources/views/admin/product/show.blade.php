@@ -21,14 +21,14 @@
         <div class="ibox-title">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <h5> Product Detail </h5>
-                <a href="{{ route('productIndex') }}" class="btn btn-secondary"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
+                <a href="{{ route('productIndex') }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
             </div>
         </div>
         <div class="ibox-content">
             <div class="ibox-img">
-                @foreach (json_decode($product->image) as $image)
-                    <img src="{{asset('/img/qr-image/'.$image)}}" alt="" class="img-fluid w-25">
-                @endforeach
+                @foreach (json_decode($product->image) as $image)                      
+                    <img class="w-25" src="{{asset('img/qr-image/'.$image)}}" alt="slide">           
+                @endforeach        
             </div>
             <div class="table-responsive my-3">
                 <table class="table table-bordered">
