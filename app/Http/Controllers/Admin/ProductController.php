@@ -36,12 +36,13 @@ class ProductController extends Controller
             'type.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်',
         ]);
 
-        $imagePath = [];
+        $fileNames = [];
 
         foreach ($request->file('images') as $image) {
             $filename = time() .'_'.$image->getClientOriginalName();
-            $path = $image->storeAs('/img/qr-image', $filename); 
-            $imagePath[] = $path;
+            $path = public_path('img/qr-image');
+            $image->move($path, $filename); 
+            $fileNames[] = $filename;
         }
 
         Product::create([
@@ -52,10 +53,10 @@ class ProductController extends Controller
             'start_date' => $request->start_date,
             'usage' => $request->usage,
             'description' => $request->detail,
-            'image' => json_encode($imagePath), 
+            'image' => json_encode($fileNames), 
             'publish' => 0,
         ]);
 
-        echo "success";
+        return redirect()->back()->with('message', 'A product is created successfully');
     }
 }

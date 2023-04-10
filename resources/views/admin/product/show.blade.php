@@ -26,7 +26,9 @@
         </div>
         <div class="ibox-content">
             <div class="ibox-img">
-                <img src="{{asset($product->image)}}" alt="" class="img-fluid w-25">
+                @foreach (json_decode($product->image) as $image)
+                    <img src="{{asset('/img/qr-image/'.$image)}}" alt="" class="img-fluid w-25">
+                @endforeach
             </div>
             <div class="table-responsive my-3">
                 <table class="table table-bordered">
