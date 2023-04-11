@@ -22,6 +22,7 @@
             @include('admin.layouts.parts.header')
             <div class="wrapper wrapper-content">
                 @yield('content')
+                @include('admin.layouts.parts.footer')
             </div>  
         </div>
     </div>

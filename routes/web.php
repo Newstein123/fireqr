@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Models\Product;
 
 /*
@@ -36,6 +38,11 @@ Route::prefix('admin')->middleware('role:super-admin|admin|editor')->group(funct
     Route::post('/product/edit/{id}', [ProductController::class, 'update'])->name('productUpdate');
     Route::post('/product/delete', [ProductController::class, 'delete'])->name('productDelete');
 
+    // Permissions 
+
+    Route::get('/permission', [PermissionController::class, 'get_all_roles']);
+    Route::post('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permissionEdit');
+
     // Download QR 
 
     Route::post('/productqr/download/{id}', [ProductController::class, 'download'])->name('downloadQr');
@@ -44,6 +51,11 @@ Route::prefix('admin')->middleware('role:super-admin|admin|editor')->group(funct
 
     Route::post('/changeState', [ProductController::class, 'change_state'])->name('changeState');
 });
+
+// Frontend 
+
+Route::get('/', [FrontendProductController::class, 'index'])->name('home');
+Route::get('/product/{id}', [FrontendProductController::class, 'show'])->name('productDetail');
 
 Route::get('/test/splide', function() {
     return view('test.splide');

@@ -15,7 +15,8 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition()
-    {
+    {   
+        $array = ["fire.jpg"];
         return [
             'type' => $this->faker->randomElement(['alpha', 'beta', 'gamma']),
             'name' => $this->faker->name(),
@@ -25,7 +26,7 @@ class ProductFactory extends Factory
             'usage' => $this->faker->text(50),
             'start_date' => $this->faker->date('Y-m-d'),
             'description' => $this->faker->text(100),
-            'image' => 'fire.jpg',
+            'image' => json_encode($array),
             'publish' => '0',
         ];
     }
