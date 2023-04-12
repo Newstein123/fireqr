@@ -2,15 +2,21 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2> Products  </h2>
+        <h2> Product  </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="index.html">Home</a>
             </li>
+            <li class="breadcrumb-item">
+                <a>Product</a>
+            </li>
             <li class="breadcrumb-item active">
-                <a>Products</a>
+                <a>Edit </a>
             </li>
         </ol>
+    </div>
+    <div class="col-md-2 mt-4">
+        <a href="{{ route('productIndex') }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -20,7 +26,6 @@
         <div class="ibox-title">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <h5> Add New Product </h5>
-                <a href="{{ route('productIndex') }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
             </div>
         </div>
         <div class="ibox-content">

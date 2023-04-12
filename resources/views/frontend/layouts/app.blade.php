@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> {{ generalSetting('title') }}  | @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
-    <link rel="shortcut icon" href="{{asset('img/logo/logo.jpg')}}" type="image/jpg">
+    <link rel="shortcut icon" href="{{asset('img/logo/'.generalSetting('logo'))}}" type="image/jpg">
 </head>
 <body>
 @include('frontend.layouts.parts.header')

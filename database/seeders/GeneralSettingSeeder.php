@@ -17,12 +17,17 @@ class GeneralSettingSeeder extends Seeder
     {
         GeneralSetting::create([
             'name' => 'logo',
-            'value' => 'logo.jpg',
+            'value' => 'logo.png',
             'type' => 'file',
         ]);
         GeneralSetting::create([
             'name' => 'title',
             'value' => 'မီးသတ်ဦးစီးဌာန QR စနစ်',
+            'type' => 'string',
+        ]);
+        GeneralSetting::create([
+            'name' => 'Website Name',
+            'value' => 'မီးသတ်ဦးစီးဌာန',
             'type' => 'string',
         ]);
     }

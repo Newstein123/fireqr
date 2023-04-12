@@ -42,7 +42,7 @@
                             <td> {{ $id++ }} </td>
                             <td> {{ $role->name }}</td>
                             <td>
-                                @can('edit products')
+                                @can('edit permissions')
                                     <div>
                                         <a href="{{route('permissionEdit', $role->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
                                         data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"   

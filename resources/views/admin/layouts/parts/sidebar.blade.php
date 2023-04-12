@@ -16,7 +16,7 @@
                 <a href="{{ route('dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
             @can('view products')
-                <li class="{{url()->current() == url('/admin/product') ? 'active' : '' }}">
+                <li class="{{request()->is('admin/product*') ? 'active' : '' }}">
                     <a href={{ route('productIndex') }}><i class="fa fa-product-hunt" aria-hidden="true"></i> <span class="nav-label"> Product </span></a>
                 </li>
             @endcan
@@ -26,12 +26,16 @@
                 </li>
             @endcan
             @can('view setting')
-                <li>
+                <li class ="{{request()->is('admin/setting*') ? 'active' : '' }}">
                     <a href=""><i class="fa fa-cogs"></i> <span class="nav-label"> Setting  </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="mailbox.html"> Account Setting </a></li>
-                        <li><a href="mail_compose.html"> Grant Permission </a></li>
-                        <li><a href="email_template.html"> General Setting </a></li>    
+                        <li><a href=""> Account Setting </a></li>
+                        @can('view permissions')
+                            <li class="{{request()->is('admin/setting/permission*') ? 'active' : ''}}"><a href="{{route('permissionIndex')}}"> Permissions </a></li>
+                        @endcan
+                        @can('view general setting')
+                            <li class="{{request()->is('admin/setting/general*') ? 'active' : ''}}"><a href="{{route('generalIndex')}}"> General Setting </a></li> 
+                        @endcan   
                     </ul>
                 </li>
             @endcan

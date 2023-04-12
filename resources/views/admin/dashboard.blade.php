@@ -34,12 +34,4 @@
     </div>
 </div>
 </div>
-@php
-    $product = App\Models\Product::findOrFail(101);
-@endphp
-<div>
-    @foreach (json_decode($product->image) as $image)
-        <img src="{{asset('/img/qr-image/'.$image)}}" alt="">
-    @endforeach
-</div>
 @endsection

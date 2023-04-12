@@ -99,3 +99,27 @@ function deleteForm(url, id) {
         }
       })
 }
+
+function grantPermission(id, name, permissionId) {
+    var checkbox = $('#' + permissionId);
+    var isChecked = checkbox.is(':checked') ? true : false;
+    $.ajax({
+        url: "/admin/setting/permission/give",
+        type: 'POST',
+        data: {
+            id : id,
+            name : name,
+            status : isChecked,
+        },
+        success: function(res) {
+          if(res.success) {
+            toastr.success(res.message)
+          } else {
+            toastr.warning(res.message)
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log(error)
+        }
+    });
+}
