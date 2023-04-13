@@ -46,7 +46,7 @@ Route::prefix('admin')->middleware('role:super-admin|admin|editor')->group(funct
     Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
     Route::get('/user/{id}', [UserController::class, 'show'])->name('userView');
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('userEdit');
-    Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('userUpdate');
+    Route::put('/user/edit/{id}', [UserController::class, 'update'])->name('userUpdate');
     Route::post('/user/delete', [UserController::class, 'delete'])->name('userDelete');
 
     Route::prefix('setting')->group(function() {
@@ -69,7 +69,8 @@ Route::prefix('admin')->middleware('role:super-admin|admin|editor')->group(funct
 
     // change State 
 
-    Route::post('/changeState', [ProductController::class, 'change_state'])->name('changeState');
+    Route::post('/changeProductState', [ProductController::class, 'change_state'])->name('changeProductState');
+    Route::post('/changeUserState', [UserController::class, 'change_state'])->name('changeUserState');
 });
 
 // Frontend 

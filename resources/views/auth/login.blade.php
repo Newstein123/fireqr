@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Login Page')
 @section('content')
 <div class="row justify-content-center vh-100">
     <div class="col-sm-12 col-md-8 col-lg-4 w-50">

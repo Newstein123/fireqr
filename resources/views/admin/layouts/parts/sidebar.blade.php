@@ -21,8 +21,8 @@
                 </li>
             @endcan
             @can('view users')
-                <li>
-                    <a href="#"><i class="fa fa-users"></i> <span class="nav-label"> Admin အသုံးပြုသူများ  </span></a>
+                <li class="{{request()->is('admin/user*') ? 'active' : ''}}">
+                    <a href="{{route('userIndex')}}"><i class="fa fa-users"></i> <span class="nav-label"> Admin အသုံးပြုသူများ  </span></a>
                 </li>
             @endcan
             @can('view setting')

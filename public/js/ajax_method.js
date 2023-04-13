@@ -40,6 +40,7 @@ function changeState(url, id) {
         method : 'POST',
         data : {id : id},
         success : function(res) {
+            console.log(res)
             if(res.success) {
                 toastr.success(res.message);
                 setInterval(function() {

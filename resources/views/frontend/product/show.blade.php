@@ -47,7 +47,7 @@
                 </tbody>
             </table>
             <div class="print-visible text-center">
-                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('\public\img\logo\logo.jpg')->generate('/product/'.$product->id)) !!} ">
+                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('\public\img\logo\logo.png')->generate('/product/'.$product->id)) !!} ">
             </div>
         </div>
     </div>
