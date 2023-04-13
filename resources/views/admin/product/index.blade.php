@@ -85,7 +85,7 @@
                                     </div>
                                 @else 
                                     <div>
-                                        <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeState')}}', {{$product->id}})"> <i class="fa fa-spinner" aria-hidden="true"
+                                        <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeProductState')}}', {{$product->id}})"> <i class="fa fa-spinner" aria-hidden="true"
                                         data-toggle="tooltip" data-placement="top" title="Publish"     
                                         ></i> </i>
                                         </button>

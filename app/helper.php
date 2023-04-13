@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GeneralSetting;
+use Intervention\Image\Facades\Image;
 
     function generalSetting($name) {
         $setting = GeneralSetting::where('name', $name)->first();
@@ -16,4 +17,16 @@ use App\Models\GeneralSetting;
       }else{
         return url('frontend/images/default-300x200.png');
       }
+    }
+
+    // uploadImage 
+    function uploadImage($image, $directory) {
+      $filename = time() .'_'.$image->getClientOriginalName();
+            $path = public_path($directory);
+            $img = Image::make($image->path());
+            $img->fit(400,300, function ($constraint) {
+				$constraint->aspectRatio();
+			})->save($path.'/'.$filename);
+
+      return $filename;
     }

@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{asset('/css/plugins/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/plugins/sweetalert/sweetalert.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/plugins/switchery/switchery.css')}}">
-
+    <link rel="stylesheet" href="{{asset('/css/plugins/splide/splide.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
 </head>
 <body>
     <div id="wrapper">
@@ -55,7 +56,9 @@
     <script src="{{asset('/js/plugins/toastr/toastr.min.js')}}"></script>
     <script src="{{asset('/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
     <script src="{{asset('/js/plugins/switchery/switchery.js')}}"></script>
+    <script src="{{asset('/js/plugins/splide/splide.min.js')}}"></script>
     <script src="{{ asset('js/ajax_method.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script>
         $('.switchery').each(function() {
             new Switchery(this);

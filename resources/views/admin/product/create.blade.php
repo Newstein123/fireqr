@@ -63,7 +63,11 @@
                     </div>
                     <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> ထုတ်လုပ်သည့်ခုနှစ် </label>
-                        <input type="date" name="manufactured_year" class="form-control mt-2">
+                        <select id="year-select" name="manufactured_year" class="form-control"> 
+                            @for ($year = 1800; $year <= 2100; $year++)
+                                <option value="{{ $year }}" @if ($year == 2000) selected @endif>{{ $year }}</option>
+                            @endfor
+                        </select>
                     </div>
                     <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> အသုံးဝင်ပုံ </label>

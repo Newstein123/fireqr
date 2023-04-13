@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DateTime;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -41,17 +43,19 @@ class ProductController extends Controller
         $fileNames = [];
 
         foreach ($request->file('images') as $image) {
-            $filename = time() .'_'.$image->getClientOriginalName();
-            $path = public_path('img/qr-image');
-            $image->move($path, $filename); 
+            $filename = uploadImage($image, 'img/qr-image');
             $fileNames[] = $filename;
         }
+
+        $year = $request->manufactured_year;
+        $format_year = DateTime::createFromFormat('Y-m-d', $year . '-01-01');
+        $manufactured_year = $format_year->format('Y-m-d');
 
         Product::create([
             'name' => $request->name,
             'type' => $request->type,
             'model_no' => $request->model_no,
-            'manufactured_year' => $request->manufactured_year,
+            'manufactured_year' => $manufactured_year,
             'start_date' => $request->start_date,
             'usage' => $request->usage,
             'description' => $request->detail,
@@ -79,9 +83,8 @@ class ProductController extends Controller
             $newFileNames = [];
 
             foreach($request->file('images') as $image) {
-                $filename = time(). '_'.$image->getClientOriginalName();
+                $filename = uploadImage($image, 'img/qr-image');
                 $newFileNames[] = $filename;
-                $image->move(public_path('img/qr-image'), $filename);
             }
 
             $product->update([

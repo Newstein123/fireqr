@@ -13,9 +13,28 @@
     </div>
     <div class="container mt-3">
         <div class="ibox-img">
-            @foreach (json_decode($product->image) as $image)                      
-                <img class="img-fluid" src="{{asset('img/qr-image/'.$image)}}" alt="slide">           
-            @endforeach        
+            <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                    @foreach (json_decode($product->image) as $image)
+                    <li class="splide__slide">
+                        <img
+                        src="{{asset('img/qr-image/'.$image)}}"
+                        alt=""
+                        class="w-100"
+                        />
+                    </li>
+                    @endforeach
+                    </ul>
+                </div>
+            </section>
+            <ul id="thumbnails" class="thumbnails">                
+                @foreach (json_decode($product->image) as $image)
+                <li class="thumbnail">
+                    <img src="{{asset('img/qr-image/'.$image)}}" alt="" />
+                </li>
+                @endforeach
+            </ul>       
         </div>
         <div class="table-responsive my-3">
             <table class="table table-bordered">
@@ -34,7 +53,12 @@
                     </tr>
                     <tr>
                         <td> ထုတ်လုပ်သည့်ခုနှစ် </td>
-                        <td> {{ $product->manufactured_year }}</td>
+                        <td> 
+                            @php
+                                $year = date('Y', strtotime($product->manufactured_year));
+                            @endphp
+                            {{$year}}
+                        </td>
                     </tr>
                     <tr>
                         <td> စတင်သုံးစွဲသည့်နေ့စွဲ  </td>
