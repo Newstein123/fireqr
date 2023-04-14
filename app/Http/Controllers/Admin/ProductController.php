@@ -40,16 +40,22 @@ class ProductController extends Controller
             'type.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်',
         ]);
 
-        $fileNames = [];
-
-        foreach ($request->file('images') as $image) {
-            $filename = uploadImage($image, 'img/qr-image');
-            $fileNames[] = $filename;
-        }
-
         $year = $request->manufactured_year;
         $format_year = DateTime::createFromFormat('Y-m-d', $year . '-01-01');
         $manufactured_year = $format_year->format('Y-m-d');
+
+        // Store QR Image 
+        $qr_name = generateRandomString(10);
+        $qr_img = storeQrImage('qr-img/', $qr_name);
+
+        // Store Fire Vehicle Image 
+
+        $fileNames = [];
+
+        foreach ($request->file('images') as $image) {
+            $filename = uploadImage($image, 'img/fire_vehicles');
+            $fileNames[] = $filename;
+        }
 
         Product::create([
             'name' => $request->name,
@@ -59,7 +65,9 @@ class ProductController extends Controller
             'start_date' => $request->start_date,
             'usage' => $request->usage,
             'description' => $request->detail,
-            'image' => json_encode($fileNames), 
+            'image' => json_encode($fileNames),
+            'qr_name' => $qr_name,
+            'qr_img' => $qr_img,
             'publish' => 0,
         ]);
 
@@ -77,13 +85,13 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         if($request->hasFile('images')) {
             foreach(json_decode($product->image) as $image) {
-                unlink(public_path('img/qr-image/'.$image));
+                unlink(public_path('img/fire_vehicles/'.$image));
             }
 
             $newFileNames = [];
 
             foreach($request->file('images') as $image) {
-                $filename = uploadImage($image, 'img/qr-image');
+                $filename = uploadImage($image, 'img/fire_vehicles');
                 $newFileNames[] = $filename;
             }
 
@@ -142,9 +150,15 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
         $product = Product::find($request->id);
+
+        // Delete Fire Vehicle Image 
         foreach(json_decode($product->image) as $image) {
-           unlink(public_path('img/qr-image/'.$image));
+           unlink(public_path('img/fire_vehicles/'.$image));
         }
+
+        // Delete QR Image 
+
+        unlink(public_path('storage/qr-img/'.$product->qr_img));
         if($product) {
             $product->delete();
 

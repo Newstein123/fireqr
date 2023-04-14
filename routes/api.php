@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/product', [ProductApiController::class, 'index']);
-Route::get('/product/{id}', [ProductApiController::class, 'show']);
+Route::get('/fire_qr/{code}', [ProductApiController::class, 'show']);

@@ -13,28 +13,35 @@
     </div>
     <div class="container mt-3">
         <div class="ibox-img">
-            <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
-                <div class="splide__track">
-                    <ul class="splide__list">
+            @php
+                $images = json_decode($product->image)
+            @endphp   
+            @if (count($images) > 1)
+                <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                        @foreach (json_decode($product->image) as $image)
+                        <li class="splide__slide">
+                            <img
+                            src="{{asset('img/fire_vehicles/'.$image)}}"
+                            alt=""
+                            class="w-100"
+                            />
+                        </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                </section>
+                <ul id="thumbnails" class="thumbnails">                
                     @foreach (json_decode($product->image) as $image)
-                    <li class="splide__slide">
-                        <img
-                        src="{{asset('img/qr-image/'.$image)}}"
-                        alt=""
-                        class="w-100"
-                        />
+                    <li class="thumbnail">
+                        <img src="{{asset('img/fire_vehicles/'.$image)}}" alt="" />
                     </li>
                     @endforeach
-                    </ul>
-                </div>
-            </section>
-            <ul id="thumbnails" class="thumbnails">                
-                @foreach (json_decode($product->image) as $image)
-                <li class="thumbnail">
-                    <img src="{{asset('img/qr-image/'.$image)}}" alt="" />
-                </li>
-                @endforeach
-            </ul>       
+                </ul> 
+            @else 
+                <img src="{{asset('/img/fire_vehicles/'.$images[0])}}" alt="" class="img-fluid w-100">
+            @endif
         </div>
         <div class="table-responsive my-3">
             <table class="table table-bordered">

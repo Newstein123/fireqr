@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'start_date' => $this->faker->date('Y-m-d'),
             'description' => $this->faker->text(100),
             'image' => json_encode($array),
+            'qr_name' => generateRandomString(10),
             'publish' => '0',
         ];
     }

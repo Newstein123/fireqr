@@ -2,9 +2,9 @@
 @section('title', 'Product Page')
 @section('content')
 @if (session('message'))
-    <script>
-        toastr.success('{{session('message')}}');
-    </script>
+    <div class="alert alert-success">
+        {{session('message')}}
+    </div>
 @endif
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">

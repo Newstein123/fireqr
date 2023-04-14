@@ -20,7 +20,7 @@
             <div class="col-md-3">
                 <div class="card my-2">
                     @if (count($image) > 0)
-                        <img class="card-img-top" src="{{asset('img/qr-image/'.$image[0])}}" alt="Card image cap">
+                        <img class="card-img-top" src="{{asset('img/fire_vehicles/'.$image[0])}}" alt="Card image cap">
                     @endif
                     <div class="card-body">
                       <h5 class="card-title"> {{$product->name}}</h5>

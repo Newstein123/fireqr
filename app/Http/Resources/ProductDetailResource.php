@@ -17,7 +17,7 @@ class ProductDetailResource extends JsonResource
         $images = json_decode($this->image);
         $prefixedImages = [];
         foreach ($images as $image) {
-            $prefixedImages[] = env('APP_URL').'/img/qr-image/' . $image;
+            $prefixedImages[] = env('APP_URL').'/img/fire_vehicles/' . $image;
         }
         return [
             'id' => $this->id,
@@ -29,6 +29,9 @@ class ProductDetailResource extends JsonResource
             'start_date' => $this->start_date,
             'usage' => $this->usage,
             'detail' => $this->description,
+            'publish' => $this->publish,
+            'qr_name' => $this->qr_name,
+            'qr_img' => $this->qr_img != '' ? env('APP_URL').'/storage/qr-img/'.$this->qr_img : '',
             'images' => $prefixedImages,
         ];
     }

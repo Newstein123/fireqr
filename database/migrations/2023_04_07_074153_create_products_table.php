@@ -23,6 +23,8 @@ return new class extends Migration
             $table->mediumText('usage');
             $table->longText('description');
             $table->string('image');
+            $table->string('qr_img')->default('');
+            $table->string('qr_name');
             $table->tinyInteger('publish')->comment('0=pubish, 1=unpublish');
             $table->timestamps();
         });

@@ -25,7 +25,9 @@ class ProductResource extends JsonResource
             'start_date' => $this->start_date,
             'usage' => $this->usage,
             'detail' => $this->description,
-            'image' => env('APP_URL').'/img/qr-image/'.json_decode($this->image)[0],
+            'publish' => $this->publish,
+            'qr_name' => $this->qr_name,
+            'image' => env('APP_URL').'/img/fire_vehicles/'.json_decode($this->image)[0],
         ];
     }
 }

@@ -11,19 +11,20 @@ use Illuminate\Http\Request;
 class ProductApiController extends Controller
 {
     public function index(Request $request)
-    {       
-        $perpage = $request->perpage;
-        $products = Product::paginate($perpage);
-        $total = count($products);
-
+    {     
+        $page = request('page') ?? 1;
+        $perpage = request('perpage') ?? 10;
+        $data = Product::orderBy('id', 'desc')->get();
+        $total = count($data);
+        $products = Product::offset(($page - 1) * $perpage)->limit($perpage)->get();
         return ProductResource::collection($products)->additional([
             'total' => $total,
         ]);
     }
 
-    public function show($id)
+    public function show($code)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('qr_name', $code)->first();
         if($product) {
             return new ProductDetailResource($product);
         }

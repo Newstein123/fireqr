@@ -37,7 +37,7 @@
                         @foreach (json_decode($product->image) as $image)
                         <li class="splide__slide">
                             <img
-                            src="{{asset('img/qr-image/'.$image)}}"
+                            src="{{asset('img/fire_vehicles/'.$image)}}"
                             alt=""
                             class="w-100"
                             />
@@ -49,7 +49,7 @@
                 <ul id="thumbnails" class="thumbnails">                
                     @foreach (json_decode($product->image) as $image)
                     <li class="thumbnail">
-                        <img src="{{asset('img/qr-image/'.$image)}}" alt="" />
+                        <img src="{{asset('img/fire_vehicles/'.$image)}}" alt="" />
                     </li>
                     @endforeach
                 </ul>   
@@ -88,9 +88,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="print-visible text-center">
-                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('/public/img/logo/'.generalSetting('logo'))->generate('/product/'.$product->id)) !!} ">
+                <div class="text-center">
+                    <img src="{{asset('storage/qr-img/'.$product->qr_img)}}" alt="" class="img-fluid w-25">
                 </div>
+                {{-- <div class="print-visible text-center">
+                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('/public/img/logo/'.generalSetting('logo'))->generate('/product/'.$product->id)) !!} ">
+                </div> --}}
             </div>
         </div>
     </div>

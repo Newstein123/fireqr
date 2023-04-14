@@ -2,6 +2,8 @@
 
 use App\Models\GeneralSetting;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
     function generalSetting($name) {
         $setting = GeneralSetting::where('name', $name)->first();
@@ -30,3 +32,24 @@ use Intervention\Image\Facades\Image;
 
       return $filename;
     }
+
+    function generateRandomString($length = 10) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@#&!';
+      $randomString = '';
+  
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, strlen($characters) - 1)];
+      }
+  
+      return $randomString;
+    } 
+
+    function storeQrImage($directory, $qr_name)
+    {
+        $qr_img = QrCode::format('png')->size(400)->merge('/public/img/logo/'.generalSetting('logo'))->generate(env('APP_URL').'/fire_qr/'.$qr_name);
+        $qr_filename = time(). '_'.$qr_name.'.png';
+        Storage::disk('public')->put($directory.$qr_filename, $qr_img);
+        return $qr_filename;
+    }
+
+  
