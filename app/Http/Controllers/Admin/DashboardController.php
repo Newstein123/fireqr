@@ -11,6 +11,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {      
         $product_count = Product::count();
-        return view('admin.dashboard',compact('product_count'));
+        $scan_count = Product::sum('scan_count');
+        return view('admin.dashboard',compact('product_count', 'scan_count'));
     }
 }

@@ -91,9 +91,6 @@
                 <div class="text-center">
                     <img src="{{asset('storage/qr-img/'.$product->qr_img)}}" alt="" class="img-fluid w-25">
                 </div>
-                {{-- <div class="print-visible text-center">
-                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->merge('/public/img/logo/'.generalSetting('logo'))->generate('/product/'.$product->id)) !!} ">
-                </div> --}}
             </div>
         </div>
     </div>

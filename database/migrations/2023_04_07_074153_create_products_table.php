@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('qr_img')->default('');
             $table->string('qr_name');
+            $table->tinyInteger('scan_count')->default(0);
             $table->tinyInteger('publish')->comment('0=pubish, 1=unpublish');
             $table->timestamps();
         });
