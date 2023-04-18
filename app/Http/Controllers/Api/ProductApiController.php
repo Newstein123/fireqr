@@ -19,14 +19,19 @@ class ProductApiController extends Controller
         $products = Product::offset(($page - 1) * $perpage)->limit($perpage)->get();
         return ProductResource::collection($products)->additional([
             'total' => $total,
+            'success' => true,
         ]);
     }
 
-    public function show($code)
+    public function show($id)
     {
-        $product = Product::where('qr_name', $code)->first();
+        $product = Product::find($id);
         if($product) {
             return new ProductDetailResource($product);
+        } else {
+            return response()->json([
+                'success' => false,
+            ]);
         }
     }
 }

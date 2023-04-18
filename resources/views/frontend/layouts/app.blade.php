@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
 </head>
 <body>
-@include('frontend.layouts.parts.header')
-<div class="container">
+{{-- @include('frontend.layouts.parts.header') --}}
+<div>
     @yield('content')
 </div>
-@include('frontend.layouts.parts.footer')
+{{-- @include('frontend.layouts.parts.footer') --}}
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{asset('/js/plugins/splide/splide.min.js')}}"></script>

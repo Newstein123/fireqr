@@ -16,7 +16,7 @@
         </ol>
     </div>
     <div class="col-md-2 mt-4">
-        <a href="{{ route('productIndex') }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
+        <a href="{{url()->previous()}}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -42,6 +42,10 @@
                         @enderror
                     </div>
                     <div class="form-group my-3">
+                        <label for="company_name" class="font-weight-bold"> ကုမ္ပဏီအမည်  </label>
+                        <input type="text" name="company_name" class="form-control mt-2" value="{{$product->company_name}}">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> ပစ္စည်းမော်ဒယ်နံပါတ် </label>
                         <input type="text" name="model_no" class="form-control mt-2" value="{{$product->model_no}}">
                     </div>
@@ -63,8 +67,12 @@
                         @enderror
                     </div>
                     <div class="form-group my-3">
+                        <label for="name" class="font-weight-bold"> ထုတ်လုပ်သည့်နိုင်ငံ </label>
+                        <input type="text" name="country" id="" class="form-control" value="{{$product->country}}">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> ထုတ်လုပ်သည့်ခုနှစ် </label>
-                        <input type="date" name="manufactured_year" class="form-control mt-2" value="{{$product->manufactured_year}}">
+                        <input type="text" name="manufactured_year" class="form-control mt-2" value="{{$product->manufactured_year ? date('Y', strtotime($product->manufactured_year)) : ''}}">
                     </div>
                     <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> အသုံးဝင်ပုံ </label>
@@ -72,7 +80,12 @@
                     </div>
                     <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> ဓာတ်ပုံ </label>
-                        <input type="file" name="images[]" class="form-control mt-2" multiple>
+                        <div id="previewImages">
+                            @foreach (json_decode($product->image) as $image)
+                                <img src="{{ asset('img/fire_vehicles/'.$image) }}" alt="" class="w-25">
+                            @endforeach
+                        </div>
+                        <input type="file" name="images[]" class="form-control mt-2" id="fileInput" accept="image/*" multiple>
                         @error('images')
                             {{$message}}
                         @enderror

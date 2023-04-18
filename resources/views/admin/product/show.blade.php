@@ -66,25 +66,45 @@
                             <td> {{ $product->type }}</td>
                         </tr>
                         <tr>
+                            <td> ကုမ္ပဏီအမည် </td>
+                            <td>
+                                {{ $product->company_name ?? '-'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> ထုတ်လုပ်သည့်နိုင်ငံ </td>
+                            <td>
+                                {{ $product->country ?? '-' }}
+                            </td>
+                        </tr>
+                        <tr>
                             <td> ပစ္စည်းမော်ဒယ်နံပါတ် </td>
-                            <td> {{ $product->model_no }}</td>
+                            <td > {{ $product->model_no ?? '-' }}</td>
                         </tr>
                         <tr>
                             <td> ထုတ်လုပ်သည့်ခုနှစ် </td>
-                            <td>
-                                @php
-                                    $year = date('Y', strtotime($product->manufactured_year));
-                                @endphp
-                                {{$year}}
+                            <td >
+                                @if ($product->manufactured_year)
+                                    @php
+                                        $year = date('Y', strtotime($product->manufactured_year));
+                                    @endphp
+                                    {{$year}}
+                                @else
+                                    -
+                                @endif
                             </td>
                         </tr>
                         <tr>
                             <td> စတင်သုံးစွဲသည့်နေ့စွဲ  </td>
-                            <td> {{ $product->start_date }}</td>
+                            <td> {{ $product->start_date ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td> အသုံးဝင်ပုံ </td>
+                            <td> {{ $product->usage ?? '-' }}</td>
                         </tr>
                         <tr>
                             <td> အသေးစိတ်  </td>
-                            <td> {{ $product->description }}</td>
+                            <td> {{ $product->description ?? '-' }}</td>
                         </tr>
                     </tbody>
                 </table>

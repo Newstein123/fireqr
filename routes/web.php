@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneralSettingController;
@@ -61,6 +62,12 @@ Route::prefix('admin')->middleware('role:super-admin|admin|editor')->group(funct
         Route::get('/general', [GeneralSettingController::class, 'index'])->name('generalIndex');
         Route::get('/general/edit/{id}', [GeneralSettingController::class, 'edit'])->name('generalEdit');
         Route::put('/general/edit/{id}', [GeneralSettingController::class, 'update'])->name('generalUpdate');
+
+        // Account 
+
+        Route::get('/account/{id}', [AccountController::class , 'show'])->name('accountShow');
+        Route::get('/account/edit/{id}', [AccountController::class , 'edit'])->name('accountEdit');
+        Route::put('/account/edit/{id}', [AccountController::class , 'update'])->name('accountUpdate');
     });
 
     // Download QR 

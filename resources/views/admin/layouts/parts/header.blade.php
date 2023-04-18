@@ -5,7 +5,9 @@
     </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="text-capitalize font-weight-bold">
-                <i class="fa fa-user mr-2"></i> {{ auth()->user()->name }}
+                <a href="{{ route('accountShow', auth()->id())}}" class="text-decoration-none text-dark"> 
+                    <i class="fa fa-user mr-2"></i> {{ auth()->user()->name }}
+                </a>
             </li>
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"

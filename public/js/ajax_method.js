@@ -31,12 +31,36 @@ $(document).ready(function() {
 
     });
 
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "timeOut": "5000",
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "5000",
+    }
+
+    $('#fileInput').on('change', function() {
+        // Clear any existing preview images
+        $('#previewImages').empty();
+
+        // Get selected files
+        var files = $(this)[0].files;
+
+        // Loop through selected files
+        for (var i = 0; i < files.length; i++) {
+            // Create a new FileReader object
+            var reader = new FileReader();
+
+            // Set the image src attribute with the data URL
+            reader.onload = function(event) {
+                var img = $('<img>').attr('src', event.target.result);
+                img.addClass('w-25')
+                $('#previewImages').append(img);
+            }
+
+            // Read the file as a data URL
+            reader.readAsDataURL(files[i]);
         }
+    });
 })
 
 function changeState(url, id) {

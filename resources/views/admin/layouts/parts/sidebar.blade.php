@@ -28,8 +28,10 @@
             @can('view setting')
                 <li class ="{{request()->is('admin/setting*') ? 'active' : '' }}">
                     <a href=""><i class="fa fa-cogs"></i> <span class="nav-label"> Setting  </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href=""> Account Setting </a></li>
+                    <ul class="nav nav-second-level collapse">   
+                        @can('view account setting')
+                            <li class="{{request()->is('admin/setting/account*') ? 'active' : ''}}"><a href="{{route('accountShow', auth()->id())}}"> Account Setting </a></li>
+                        @endcan
                         @can('view permissions')
                             <li class="{{request()->is('admin/setting/permission*') ? 'active' : ''}}"><a href="{{route('permissionIndex')}}"> Permissions </a></li>
                         @endcan

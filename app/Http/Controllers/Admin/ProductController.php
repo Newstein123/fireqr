@@ -34,19 +34,27 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'type' => 'required',
-            'images.*' => 'required|mimes:jpg,bmp,png'
+            'images' => 'required',
+            'images.*' => 'mimes:jpg,jpeg,png'
         ], [
             'name.required' => 'ပစ္စည်းအမည်လိုအပ်ပါသည်',
             'type.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်',
+            'images' => 'ဓာတ်ပုံလိုအပ်ပါသည်',
+            'images.*' => 'jpg, jpeg, png အမျိုးအစားဖြစ်ရမည်'
         ]);
 
         $year = $request->manufactured_year;
-        $format_year = DateTime::createFromFormat('Y-m-d', $year . '-01-01');
-        $manufactured_year = $format_year->format('Y-m-d');
+        if($year != '') {
+            $format_year = DateTime::createFromFormat('Y-m-d', $year . '-01-01');
+            $manufactured_year = $format_year->format('Y-m-d');
+        } else {
+            $manufactured_year = null;
+        }
 
+        $last_product = Product::latest()->first();
         // Store QR Image 
         $qr_name = generateRandomString(10);
-        $qr_img = storeQrImage('qr-img/', $qr_name);
+        $qr_img = storeQrImage('qr-img/', $last_product->id + 1);
 
         // Store Fire Vehicle Image 
 
@@ -60,11 +68,13 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->name,
             'type' => $request->type,
-            'model_no' => $request->model_no,
+            'model_no' => $request->model_no ?? null,
             'manufactured_year' => $manufactured_year,
-            'start_date' => $request->start_date,
-            'usage' => $request->usage,
-            'description' => $request->detail,
+            'country' => $request->country ?? null,
+            'company_name' => $request->company_name ?? null,
+            'start_date' => $request->start_date ?? null,
+            'usage' => $request->usage ?? null,
+            'description' => $request->detail ?? null,
             'image' => json_encode($fileNames),
             'qr_name' => $qr_name,
             'qr_img' => $qr_img,
@@ -82,6 +92,15 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {   
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'images.*' => 'mimes:jpg,jpeg,png'
+        ], [
+            'name.required' => 'ပစ္စည်းအမည်လိုအပ်ပါသည်',
+            'type.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်',
+        ]);
+
         $product = Product::findOrFail($id);
         if($request->hasFile('images')) {
             foreach(json_decode($product->image) as $image) {
@@ -96,19 +115,28 @@ class ProductController extends Controller
             }
 
             $product->update([
+                'image' => json_encode($newFileNames),
+           ]);
+        }
+
+            $year = $request->manufactured_year;
+            $format_year = DateTime::createFromFormat('Y-m-d', $year . '-01-01');
+            $manufactured_year = $format_year->format('Y-m-d');
+
+            $product->update([
                 'name' => $request->name,
                 'type' => $request->type,
+                'country' => $request->country,
+                'company_name' => $request->company_name,
                 'model_no' => $request->model_no,
-                'manufactured_year' => $request->manufactured_year,
+                'manufactured_year' => $manufactured_year,
                 'start_date' => $request->start_date,
                 'usage' => $request->usage,
-                'description' => $request->detail,
-                'image' => json_encode($newFileNames), 
+                'description' => $request->detail, 
                 'publish' => 0,
             ]);
 
             return redirect('/admin/product')->with('message', 'Product updated successfully');
-        }
     }
 
     public function download($id)
