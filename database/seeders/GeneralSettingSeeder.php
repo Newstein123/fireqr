@@ -30,5 +30,10 @@ class GeneralSettingSeeder extends Seeder
             'value' => 'မီးသတ်ဦးစီးဌာန',
             'type' => 'string',
         ]);
+        GeneralSetting::create([
+            'name' => 'Company Name',
+            'value' => 'မီးသတ်ဦးစီးဌာန',
+            'type' => 'string',
+        ]);
     }
 }

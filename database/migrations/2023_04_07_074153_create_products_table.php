@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('model_no');
+            $table->string('country');
+            $table->string('company_name');
             $table->date('manufactured_year');
             $table->date('start_date');
             $table->mediumText('usage');

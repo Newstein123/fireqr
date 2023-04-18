@@ -16,7 +16,7 @@ class UserController extends ResponseController
     {   
         $users = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', 'user');
-        })->get();
+        })->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 

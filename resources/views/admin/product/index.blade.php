@@ -33,88 +33,88 @@
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover dataTables-example" >
-            <thead>
-            <tr>
-                <th> Id </th>
-                <th> Product Name </th>
-                <th> Product Type </th>
-                <th> Date </th>
-                <th> Action </th>
-            </tr>
-            </thead>
-            <tbody>
-                @php
-                    $id = 1;
-                @endphp
-                @foreach ($products as $product)
-                    <tr class="gradeU">
-                        <td> {{ $id++ }} </td>
-                        <td> {{ $product->name }}</td>
-                        <td> {{ $product->type }}</td>
-                        <td> {{$product->created_at->toFormattedDateString() }} </td>
-                        <td>
-                            <div class="d-flex justify-content-between align-items-center">
-                                @can('view products')                            
-                                <div>
-                                    <a href="{{ route('productView', $product->id)}}" class="btn btn-secondary btn-sm"> View Detail </a> 
-                                </div>
-                            @endcan
-                            <div>
-                                <form action="{{route('downloadQr', $product->id)}}" method="post">
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm download" type="submit">
-                                        <i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဒေါင်းလုပ်ဆွဲမည်"    
-                                    ></i></button>
-                                </form>
-                            </div>
-                            @can('edit products')
-                                <div>
-                                    <a href="{{route('productEdit', $product->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
-                                    data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"     
-                                    ></i></a>
-                                </div>
-                            @endcan
-                            @can('ban products')
-                                @if ($product->publish == 0)
-                                    <div>
-                                        <button class="btn btn-info btn-sm" onclick="changeState('{{route('changeProductState')}}', {{$product->id}})"> <i class="fa fa-ban" aria-hidden="true" 
-                                        data-toggle="tooltip" data-placement="top" title="Unpublish" 
-                                        ></i>
-                                        </button>
-                                    </div>
-                                @else 
-                                    <div>
-                                        <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeProductState')}}', {{$product->id}})"> <i class="fa fa-spinner" aria-hidden="true"
-                                        data-toggle="tooltip" data-placement="top" title="Publish"     
-                                        ></i> </i>
-                                        </button>
-                                    </div>
-                                @endif
-                            @endcan
-                            @can('delete products')
-                                <div>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteForm('{{route('productDelete')}}', {{$product->id}})" ><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဖျက်သိမ်းမည်" 
-                                        ></i></button>
-                                </div>
-                            @endcan
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-            <tr>
-                <th> Id </th>
-                <th> Product Name </th>
-                <th> Product Type </th>
-                <th> Date </th>
-                <th> Action </th>
-            </tr>
-            </tfoot>
-            </table>
+                    <table class="table table-striped table-bordered table-hover" >
+                        <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Product Name </th>
+                            <th> Product Type </th>
+                            <th> Date </th>
+                            <th> Action </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $id = 1;
+                            @endphp
+                            @foreach ($products as $product)
+                                <tr class="gradeU">
+                                    <td> {{ $id++ }} </td>
+                                    <td> {{ $product->name }}</td>
+                                    <td> {{ $product->type }}</td>
+                                    <td> {{$product->created_at->toFormattedDateString() }} </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @can('view products')                            
+                                            <div class="mr-2">
+                                                <a href="{{ route('productView', $product->id)}}" class="btn btn-secondary btn-sm"> View Detail </a> 
+                                            </div>
+                                        @endcan
+                                        <div class="mr-2">
+                                            <form action="{{route('downloadQr', $product->id)}}" method="post">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm download" type="submit">
+                                                    <i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဒေါင်းလုပ်ဆွဲမည်"    
+                                                ></i></button>
+                                            </form>
+                                        </div>
+                                        @can('edit products')
+                                            <div class="mr-2">
+                                                <a href="{{route('productEdit', $product->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
+                                                data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"     
+                                                ></i></a>
+                                            </div>
+                                        @endcan
+                                        @can('ban products')
+                                            @if ($product->publish == 0)
+                                                <div class="mr-2">
+                                                    <button class="btn btn-info btn-sm" onclick="changeState('{{route('changeProductState')}}', {{$product->id}})"> <i class="fa fa-ban" aria-hidden="true" 
+                                                    data-toggle="tooltip" data-placement="top" title="Unpublish" 
+                                                    ></i>
+                                                    </button>
+                                                </div>
+                                            @else 
+                                                <div class="mr-2">
+                                                    <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeProductState')}}', {{$product->id}})"> <i class="fa fa-spinner" aria-hidden="true"
+                                                    data-toggle="tooltip" data-placement="top" title="Publish"     
+                                                    ></i> </i>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        @endcan
+                                        @can('delete products')
+                                            <div>
+                                                <button class="btn btn-danger btn-sm" onclick="deleteForm('{{route('productDelete')}}', {{$product->id}})" ><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဖျက်သိမ်းမည်" 
+                                                    ></i></button>
+                                            </div>
+                                        @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th> Id </th>
+                            <th> Product Name </th>
+                            <th> Product Type </th>
+                            <th> Date </th>
+                            <th> Action </th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
-
+                {{ $products->links() }}
             </div>
         </div>
     </div>

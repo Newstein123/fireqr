@@ -17,7 +17,7 @@
         </ol>
     </div>
     <div class="col-md-2 mt-4">
-        <a href="{{ route('userIndex') }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Go Back </a>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">

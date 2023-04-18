@@ -28,84 +28,87 @@
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover dataTables-example" >
-            <thead>
-            <tr>
-                <th> Id </th>
-                <th> User Name </th>
-                <th> User Role </th>
-                <th> Date </th>
-                <th> Action </th>
-            </tr>
-            </thead>
-            <tbody>
-                @php
-                    $id = 1;
-                @endphp
-                @foreach ($users as $user)
-                    <tr class="gradeU">
-                        <td> {{ $id++ }} </td>
-                        <td> {{ $user->name }}</td>
-                        <td> 
-                            @foreach ($user->getRoleNames() as $role)
-                                {{$role}}
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                        <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> User Name </th>
+                            <th> User Role </th>
+                            <th> Date </th>
+                            <th> Action </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $id = 1;
+                            @endphp
+                            @foreach ($users as $user)
+                                <tr class="gradeU">
+                                    <td> {{ $id++ }} </td>
+                                    <td> {{ $user->name }}</td>
+                                    <td> 
+                                        @foreach ($user->getRoleNames() as $role)
+                                            {{$role}}
+                                        @endforeach
+                                    </td>
+                                    <td> {{$user->created_at->toFormattedDateString() }} </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @can('view users')                            
+                                            <div class="mr-2">
+                                                <a href="{{ route('userView', $user->id)}}" class="btn btn-secondary btn-sm"> View Detail </a> 
+                                            </div>
+                                        @endcan
+                                        @can('edit users')
+                                            <div class="mr-2">
+                                                <a href="{{route('userEdit', $user->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
+                                                data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"
+                                                ></i></a>
+                                            </div>
+                                        @endcan
+                                        @can('ban users')
+                                        @if (!$user->hasRole('super-admin'))
+                                            @if ($user->status == 0)
+                                                <div class="mr-2">
+                                                    <button class="btn btn-info btn-sm" onclick="changeState('{{route('changeUserState')}}', {{$user->id}})"> <i class="fa fa-ban" aria-hidden="true" 
+                                                    data-toggle="tooltip" data-placement="top" title="ban" 
+                                                    ></i>
+                                                    </button>
+                                                </div>
+                                            @else 
+                                                <div class="mr-2">
+                                                    <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeUserState')}}', {{$user->id}})"> <i class="fa fa-repeat" aria-hidden="true"
+                                                    data-toggle="tooltip" data-placement="top" title="redo"     
+                                                    ></i> </i>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        @endif
+                                        @endcan
+                                        @can('delete users')
+                                        @if (!$user->hasRole('super-admin'))
+                                            <div class="mr-2">
+                                                <button class="btn btn-danger btn-sm" onclick="deleteForm('{{route('userDelete')}}', {{$user->id}})" ><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဖျက်သိမ်းမည်" 
+                                                    ></i></button>
+                                            </div>
+                                        @endif
+                                        @endcan
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
-                        </td>
-                        <td> {{$user->created_at->toFormattedDateString() }} </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                @can('view users')                            
-                                <div class="mr-2">
-                                    <a href="{{ route('userView', $user->id)}}" class="btn btn-secondary btn-sm"> View Detail </a> 
-                                </div>
-                            @endcan
-                            @can('edit users')
-                                <div class="mr-2">
-                                    <a href="{{route('userEdit', $user->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
-                                    data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"     
-                                    ></i></a>
-                                </div>
-                            @endcan
-                            @can('ban users')
-                                @if ($user->status == 0)
-                                    <div class="mr-2">
-                                        <button class="btn btn-info btn-sm" onclick="changeState('{{route('changeUserState')}}', {{$user->id}})"> <i class="fa fa-ban" aria-hidden="true" 
-                                        data-toggle="tooltip" data-placement="top" title="ban" 
-                                        ></i>
-                                        </button>
-                                    </div>
-                                @else 
-                                    <div class="mr-2">
-                                        <button class="btn btn-warning btn-sm" onclick="changeState('{{route('changeUserState')}}', {{$user->id}})"> <i class="fa fa-repeat" aria-hidden="true"
-                                        data-toggle="tooltip" data-placement="top" title="redo"     
-                                        ></i> </i>
-                                        </button>
-                                    </div>
-                                @endif
-                            @endcan
-                            @can('delete users')
-                                <div class="mr-2">
-                                    <button class="btn btn-danger btn-sm" onclick="deleteForm('{{route('userDelete')}}', {{$user->id}})" ><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="ဖျက်သိမ်းမည်" 
-                                        ></i></button>
-                                </div>
-                            @endcan
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-            <tr>
-                <th> Id </th>
-                <th> User Name </th>
-                <th> User Role </th>
-                <th> Date </th>
-                <th> Action </th>
-            </tr>
-            </tfoot>
-            </table>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th> Id </th>
+                            <th> User Name </th>
+                            <th> User Role </th>
+                            <th> Date </th>
+                            <th> Action </th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
-
             </div>
         </div>
     </div>
