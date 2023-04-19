@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Edit User')
+@section('title', 'Edit Account')
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">

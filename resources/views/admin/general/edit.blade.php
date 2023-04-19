@@ -103,7 +103,7 @@
                                     <img src="{{asset('img/logo/'.generalSetting('logo'))}}" 
                                     class="img-fluid w-25 mb-2" id="preview_image_before_upload">
                                    @endif
-                                   <input type="file" name="generalSetting" class="form-control @error('cover') is-invalid @enderror"  upload="cover">
+                                   <input type="file" name="generalSetting" class="form-control @error('cover') is-invalid @enderror"  upload="cover" id="fileInput">
                                <?php }elseif($data->type == 'array'){ ?>
                                    <?php $socail_icon_list = json_decode($data->value,true);?>
                                        <?php foreach ($socail_icon_list as $key => $val){ ?>

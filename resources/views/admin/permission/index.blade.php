@@ -43,11 +43,13 @@
                             <td> {{ $role->name }}</td>
                             <td>
                                 @can('edit permissions')
-                                    <div>
-                                        <a href="{{route('permissionEdit', $role->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
-                                        data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"   
-                                        ></i></a>
-                                    </div>
+                                    @if ($role->name != 'super-admin')
+                                        <div>
+                                            <a href="{{route('permissionEdit', $role->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit" aria-hidden="true"
+                                            data-toggle="tooltip" data-placement="top" title="ပြင်ဆင်မည်"
+                                            ></i></a>
+                                        </div>
+                                    @endif
                                 @endcan                               
                                 </div>
                             </td>

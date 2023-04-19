@@ -37,7 +37,7 @@ $(document).ready(function() {
         "positionClass": "toast-top-right",
         "timeOut": "5000",
     }
-
+    // Multiple Image Preview 
     $('#fileInput').on('change', function() {
         // Clear any existing preview images
         $('#previewImages').empty();
@@ -60,6 +60,23 @@ $(document).ready(function() {
             // Read the file as a data URL
             reader.readAsDataURL(files[i]);
         }
+    });
+
+    // Signle Image Preview 
+    $('#fileInput').on('change', function() {
+        // Get selected file
+        var file = $(this)[0].files[0];
+
+        // Create a new FileReader object
+        var reader = new FileReader();
+
+        // Set the image src attribute with the data URL
+        reader.onload = function(event) {
+            $('#preview_image_before_upload').attr('src', event.target.result);
+        }
+
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
     });
 })
 

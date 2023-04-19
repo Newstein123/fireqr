@@ -12,7 +12,7 @@ class PermissionController extends ResponseController
 {
     public function get_all_roles()
     {   
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'user')->get();
         return view('admin.permission.index', compact('roles'));
     }
 

@@ -17,6 +17,8 @@ class ProductController extends Controller
         if($search = request()->input('search')) {
             $products = Product::where('name', 'like', "%$search%")
             ->orWhere('type', 'like', "%$search%")
+            ->orWhere('company_name', 'like',"%$search%")
+            ->orWhere('country', 'like', "%$search%")
             ->paginate(10)->withQueryString();
             return view('admin.product.index', compact('products'));
         }
@@ -149,7 +151,7 @@ class ProductController extends Controller
 
     public function download($id)
     {
-        $image = QrCode::format('png')->size(500)->merge(public_path('img/logo/'.generalSetting('logo')), 0.2, true)->generate(url('/product/'.$id));
+        $image = QrCode::format('png')->size(500)->merge(public_path('img/logo/'.generalSetting('qr-logo')), 0.2, true)->generate(url('/product/'.$id));
         return response($image)->header('Content-type','image/png')->header('Content-Disposition', 'attachment; filename=qrcode.png');
     }
 

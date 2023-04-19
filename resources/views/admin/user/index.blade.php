@@ -13,9 +13,11 @@
             </li>
         </ol>
     </div>
-    <div class="col-md-2 mt-4">
-        <a href="{{ route('userCreate') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-plus mr-2"></i> Add User </a>
-    </div>
+    @can('create users')
+        <div class="col-md-2 mt-4">
+            <a href="{{ route('userCreate') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-plus mr-2"></i> Add User </a>
+        </div>
+    @endcan
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">

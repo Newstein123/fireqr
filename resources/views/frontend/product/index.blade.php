@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('title', 'Product Gallery View')
 @section('content')
-    <div class="container-fluid bg-info p-3 mt-3">
+    {{-- <div class="container-fluid bg-info p-3 mt-3">
         <div class="row text-center">
             <div class="col-md-6">
                 <h3> Products </h3>
@@ -10,6 +10,9 @@
                 <p><span class="text-danger"> ပင်မစာမျက်နှာ </span> All Products </p> 
             </div>
         </div>
+    </div> --}}
+    <div class="text-center my-3 p-3 bg-secondary text-white">
+        <h3> Product Gallery </h3>
     </div>
     <div class="container">
         <div class="row">

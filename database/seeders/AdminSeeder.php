@@ -15,12 +15,26 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $super_admin = User::create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+        ]);
+
+        $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
         ]);
 
-        $user->assignRole('super-admin');
+        $editor = User::create([
+            'name' => 'editor',
+            'email' => 'editor@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+        ]);
+
+        $super_admin->assignRole('super-admin');
+        $admin->assignRole('admin');
+        $editor->assignRole('editor');
     }
 }

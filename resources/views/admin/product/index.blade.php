@@ -18,9 +18,11 @@
             </li>
         </ol>
     </div>
-    <div class="col-md-2 mt-4">
-        <a href="{{ route('productCreate') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-plus mr-2"></i> Add Product </a>
-    </div>
+    @can('create products')
+        <div class="col-md-2 mt-4">
+            <a href="{{ route('productCreate') }}" class="btn btn-secondary btn-sm"> <i class="fa fa-plus mr-2"></i> Add Product </a>
+        </div>
+    @endcan
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
