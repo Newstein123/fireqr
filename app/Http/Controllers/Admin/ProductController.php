@@ -14,8 +14,16 @@ class ProductController extends Controller
 {
     public function index()
     {   
+        if($search = request()->input('search')) {
+            $products = Product::where('name', 'like', "%$search%")
+            ->orWhere('type', 'like', "%$search%")
+            ->paginate(10)->withQueryString();
+            return view('admin.product.index', compact('products'));
+        }
+        
         $products = Product::orderBy('id', 'desc')->paginate(10);
         return view('admin.product.index', compact('products'));
+        
     }
 
     public function show($id)

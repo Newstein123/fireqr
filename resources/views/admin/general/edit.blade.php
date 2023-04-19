@@ -96,8 +96,13 @@
                                </div>
     
                                <?php }elseif($data->type == 'file'){ ?>
-                                   <img src="{{asset('img/logo/'.generalSetting('logo'))}}" 
-                                   class="img-fluid w-25 mb-2" id="preview_image_before_upload">
+                                   @if ($data->name == 'qr-logo')
+                                   <img src="{{asset(asset('img/logo/'.generalSetting('qr-logo')))}}" 
+                                   class="img-fluid w-25 mb-2" id="preview_image_before_upload">  
+                                   @else 
+                                    <img src="{{asset('img/logo/'.generalSetting('logo'))}}" 
+                                    class="img-fluid w-25 mb-2" id="preview_image_before_upload">
+                                   @endif
                                    <input type="file" name="generalSetting" class="form-control @error('cover') is-invalid @enderror"  upload="cover">
                                <?php }elseif($data->type == 'array'){ ?>
                                    <?php $socail_icon_list = json_decode($data->value,true);?>

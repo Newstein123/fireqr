@@ -46,7 +46,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
     function storeQrImage($directory, $product_id)
     {
-        $qr_img = QrCode::format('png')->size(400)->merge('/public/img/logo/'.generalSetting('logo'))->generate(env('APP_URL').'/product/'.$product_id);
+        $qr_img = QrCode::format('png')->size(400)->merge('/public/img/logo/'.generalSetting('qr-logo'))->generate(env('APP_URL').'/product/'.$product_id);
         $qr_filename = time(). '_'.$product_id.'.png';
         Storage::disk('public')->put($directory.$qr_filename, $qr_img);
         return $qr_filename;

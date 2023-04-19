@@ -49,31 +49,31 @@
                 <div class="col-md-8">
                     <h3 class="my-3"> {{ $product->type  }}</h3>
                     <div class="row my-3">
-                        <div class="col-md-4"> ပစ္စည်းအမျိုးအမည် </div>
-                        <div class="col-md-8"> - {{ $product->name }}</div>
+                        <div class="col-5 col-md-4"> ပစ္စည်းအမျိုးအမည် </div>
+                        <div class="col-7 col-md-8"> - {{ $product->name }}</div>
                     </div>
                     @if ($product->company_name) 
                         <div class="row my-3">
-                            <div class="col-md-4"> ကုမ္ပဏီအမည် </div>
-                            <div class="col-md-8"> - {{ $product->company_name }} </div>
+                            <div class="col-5 col-md-4"> ကုမ္ပဏီအမည် </div>
+                            <div class="col-7 col-md-8"> - {{ $product->company_name }} </div>
                         </div>
                     @endif
                     @if ($product->country)
                         <div class="row my-3">
-                            <div class="col-md-4"> ထုတ်လုပ်သည့်နိုင်ငံ  </div>
-                            <div class="col-md-8"> - {{ $product->country }} </div>
+                            <div class="col-5 col-md-4"> ထုတ်လုပ်သည့်နိုင်ငံ  </div>
+                            <div class="col-7 col-md-8"> - {{ $product->country }} </div>
                         </div>
                     @endif
                     @if ($product->model_no)
                         <div class="row my-3">
-                            <div class="col-md-4"> ပစ္စည်းမော်ဒယ်နံပါတ် </div>
-                            <div class="col-md-8"> - {{ $product->model_no }}</div>
+                            <div class="col-5 col-md-4"> ပစ္စည်းမော်ဒယ်နံပါတ် </div>
+                            <div class="col-7 col-md-8"> - {{ $product->model_no }}</div>
                         </div>
                     @endif
                     @if ($product->manufactured_year)
                         <div class="row my-3">
-                            <div class="col-md-4"> ထုတ်လုပ်သည့်ခုနှစ် </div>
-                            <div class="col-md-8"> 
+                            <div class="col-5 col-md-4"> ထုတ်လုပ်သည့်ခုနှစ် </div>
+                            <div class="col-7 col-md-8"> 
                                 @php
                                     $year = date('Y', strtotime($product->manufactured_year));
                                 @endphp
@@ -83,8 +83,8 @@
                     @endif
                     @if ($product->start_date)
                         <div class="row my-3">
-                            <div class="col-md-4"> စတင်သုံးစွဲသည့်နေ့စွဲ  </div>
-                            <div class="col-md-8"> - {{ $product->start_date }}</div>
+                            <div class="col-5 col-md-4"> စတင်သုံးစွဲသည့်နေ့စွဲ  </div>
+                            <div class="col-7 col-md-8"> - {{ $product->start_date }}</div>
                         </div>
                     @endif
                     @if ($product->usage)
