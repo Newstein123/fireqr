@@ -18,8 +18,8 @@ class ProductFactory extends Factory
     {   
         $array = ["fire.jpg"];
         return [
-            'type' => $this->faker->randomElement(['alpha', 'beta', 'gamma']),
             'name' => $this->faker->name(),
+            'category_id' => 1,
             'model_no' => $this->faker->randomNumber(6, true),
             'country' => $this->faker->randomElement(['myanmar', 'Japan', 'Germany', 'Thailand', 'Russia', 'China']),
             'company_name' => $this->faker->company(),

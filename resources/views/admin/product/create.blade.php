@@ -1,14 +1,15 @@
 @extends('admin.layouts.app')
+@section('title', 'Create Product')
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2> Product  </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="{{ route('dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a>Product</a>
+                <a href="{{ route('productIndex') }}">Product</a>
             </li>
             <li class="breadcrumb-item active">
                 <a> Create </a>
@@ -60,7 +61,12 @@
                 <div class="col-md-6">
                     <div class="form-group my-3">
                         <label for="type" class="font-weight-bold"> ပစ္စည်းအမျိုးအစား <span class="text-danger">*</span> </label>
-                        <input type="text" name="type" class="form-control mt-2" value="{{ old('type') }}">
+                        <select name="type" id="" class="form-control">
+                            <option value=""> Choose Type  </option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                            @endforeach
+                        </select>
                         @error('type')
                             <p class="text-danger my-2"> {{$message}} </p>
                         @enderror

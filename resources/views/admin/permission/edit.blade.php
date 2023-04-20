@@ -6,10 +6,10 @@
         <h2> Settings </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Settings </a>
+                <a href="">Settings </a>
             </li>
             <li class="breadcrumb-item">
-                <a> Permissions </a> 
+                <a href="{{ route('permissionIndex') }}"> Permissions </a> 
             </li>
             <li class="breadcrumb-item active">
                 <a> Edit </a> 

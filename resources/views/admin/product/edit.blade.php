@@ -1,14 +1,15 @@
 @extends('admin.layouts.app')
+@section('title', 'Edit Category')
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2> Product  </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="{{ route('dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a>Product</a>
+                <a href="{{ route('productIndex') }}">Product</a>
             </li>
             <li class="breadcrumb-item active">
                 <a>Edit </a>
@@ -61,7 +62,14 @@
                 <div class="col-md-6">
                     <div class="form-group my-3">
                         <label for="name" class="font-weight-bold"> ပစ္စည်းအမျိုးအစား </label>
-                        <input type="name" name="type" class="form-control mt-2" value="{{$product->type}}">
+                        <select name="type" id="" class="form-control">
+                            <option value=""> Choose Type </option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                {{ $category->id == $product->category_id ? 'selected' : '' }}    
+                                > {{ $category->name }} </option>
+                            @endforeach
+                        </select>
                         @error('type')
                             <p class="text-danger my-2"> {{$message}} </p>
                         @enderror

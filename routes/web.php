@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,14 @@ Route::prefix('admin')->middleware(['role:super-admin|admin|editor', 'admin'])->
         Route::get('/account/{id}', [AccountController::class , 'show'])->name('accountShow');
         Route::get('/account/edit/{id}', [AccountController::class , 'edit'])->name('accountEdit');
         Route::put('/account/edit/{id}', [AccountController::class , 'update'])->name('accountUpdate');
+
+        // Category 
+
+        Route::get('/category', [CategoryController::class, 'index'])->name('categoryIndex');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('categoryCreate');
+        Route::post('/category/create', [CategoryController::class, 'store'])->name('categoryStore');
+        Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('categoryEdit');
+        Route::put('/category/edit/{id}', [CategoryController::class, 'update'])->name('categoryUpdate');
     });
 
     // Download QR 

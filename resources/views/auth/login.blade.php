@@ -2,7 +2,7 @@
 @section('title', 'Login Page')
 @section('content')
 <div class="row justify-content-center vh-100">
-    <div class="col-sm-12 col-md-8 col-lg-4 w-50">
+    <div class="col-sm-12 col-md-4">
       {{-- Login Header  --}}
      <div class="mt-3 text-center ">
             <img src="{{ asset('img/logo/'.generalSetting('logo')) }}" alt="" class="img-fluid rounded-circle w-25">
@@ -58,7 +58,7 @@
        </form>
      </div>
     </div>
- </div>
+</div>
  <script>
     $('#login_pwd').on('click', function() {
         var type = $('#login_password').attr('type');

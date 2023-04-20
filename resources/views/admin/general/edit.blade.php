@@ -6,10 +6,10 @@
         <h2> Setting </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html"> Setting </a>
+                <a href=""> Setting </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="index.html"> General Setting </a>
+                <a href="{{ route('generalIndex') }}"> General Setting </a>
             </li>
             <li class="breadcrumb-item active">
                 <a> Edit  </a>

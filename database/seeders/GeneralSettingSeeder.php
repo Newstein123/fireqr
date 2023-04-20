@@ -31,7 +31,7 @@ class GeneralSettingSeeder extends Seeder
             'type' => 'string',
         ]);
         GeneralSetting::create([
-            'name' => 'Company Name',
+            'name' => 'qr-logo',
             'value' => 'မီးသတ်ဦးစီးဌာန',
             'type' => 'string',
         ]);

@@ -6,7 +6,7 @@
         <h2> User </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="{{ route('dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item active">
                 <a> User </a>

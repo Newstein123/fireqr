@@ -6,6 +6,7 @@ use DateTime;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -35,8 +36,9 @@ class ProductController extends Controller
     }
 
     public function create()
-    {
-       return view('admin.product.create');
+    {   
+        $categories = Category::all();
+        return view('admin.product.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -77,7 +79,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->name,
-            'type' => $request->type,
+            'category_id' => $request->type,
             'model_no' => $request->model_no ?? null,
             'manufactured_year' => $manufactured_year,
             'country' => $request->country ?? null,
@@ -97,7 +99,8 @@ class ProductController extends Controller
     public function edit($id)
     {   
         $product = Product::findOrFail($id);
-        return view('admin.product.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -135,7 +138,7 @@ class ProductController extends Controller
 
             $product->update([
                 'name' => $request->name,
-                'type' => $request->type,
+                'category_id' => $request->type,
                 'country' => $request->country,
                 'company_name' => $request->company_name,
                 'model_no' => $request->model_no,

@@ -6,10 +6,10 @@
         <h2> Product  </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="{{ route('dashboard') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a>Product</a>
+                <a href="{{ route('productIndex') }}">Product</a>
             </li>
             <li class="breadcrumb-item active">
                 <a> Detail </a>
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td> ပစ္စည်းအမျိုးအစား </td>
-                            <td> {{ $product->type }}</td>
+                            <td> {{ $product->category->name }}</td>
                         </tr>
                         <tr>
                             <td> ကုမ္ပဏီအမည် </td>

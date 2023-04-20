@@ -33,6 +33,9 @@ class PermissionSeeder extends Seeder
             'view general setting',
             'view account setting',
             'edit account setting',
+            'view categories',
+            'create categories',
+            'edit categories',
         ];
 
         foreach($permissions as $permission) {

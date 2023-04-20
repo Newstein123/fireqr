@@ -1,8 +1,8 @@
 <div class="footer">
     <div class="float-right">
-        Powered By MISL
+        Developed By MISL
     </div>
     <div>
-        <strong>Copyright</strong> {{ generalSetting('Company Name') }} &copy; 2014-2018
+        <strong>Copyright</strong> {{ generalSetting('Website Name') }} &copy; 2023
     </div>
 </div>

@@ -82,9 +82,12 @@
                         </div>
                     @endif
                     @if ($product->start_date)
+                        @php
+                            $formattedDate = \Carbon\Carbon::parse($product->start_date)->format('d/m/Y');
+                        @endphp
                         <div class="row my-3">
                             <div class="col-5 col-md-4"> စတင်သုံးစွဲသည့်နေ့စွဲ  </div>
-                            <div class="col-7 col-md-8"> - {{ $product->start_date }}</div>
+                            <div class="col-7 col-md-8"> - {{$formattedDate}}</div>
                         </div>
                     @endif
                     @if ($product->usage)

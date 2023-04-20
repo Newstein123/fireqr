@@ -38,6 +38,9 @@
                         @can('view general setting')
                             <li class="{{request()->is('admin/setting/general*') ? 'active' : ''}}"><a href="{{route('generalIndex')}}"> General Setting </a></li> 
                         @endcan   
+                        @can('view categories')
+                            <li class="{{request()->is('admin/setting/category*') ? 'active' : ''}}"><a href="{{route('categoryIndex')}}"> Category </a></li> 
+                        @endcan   
                     </ul>
                 </li>
             @endcan

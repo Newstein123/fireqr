@@ -6,7 +6,7 @@
         <h2> Settings </h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Settings </a>
+                <a href="">Settings </a>
             </li>
             <li class="breadcrumb-item active">
                 <a> Permissions </a> 
