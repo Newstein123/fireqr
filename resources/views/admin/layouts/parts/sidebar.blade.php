@@ -5,7 +5,7 @@
                 <div class="profile-element">
                     <div class=" d-flex justify-content-between align-items-center">
                         <img src="{{asset("img/logo/".generalSetting('logo'))}}" alt="" class="img-fluid w-50 p-2 rounded-circle">
-                        <span class="text-white"> မီးသတ်ဦးစီးဌာန</span>
+                        <span class="text-white"> {{ generalSetting('Website Name') }}</span>
                     </div>
                 </div>
                 <div class="logo-element">

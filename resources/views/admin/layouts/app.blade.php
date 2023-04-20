@@ -59,6 +59,7 @@
     <script src="{{asset('/js/plugins/splide/splide.min.js')}}"></script>
     <script src="{{ asset('js/ajax_method.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    @include('admin.toastr_message')
     <script>
         $('.switchery').each(function() {
             new Switchery(this);

@@ -52,6 +52,6 @@ class GeneralSettingController extends Controller
             
         }
         $data->update(['value'=>$value]);
-        return redirect()->route('generalIndex')->with('success','Upload Successfully');
+        return redirect()->route('generalIndex')->with('message','Upload Successfully');
     }
 }

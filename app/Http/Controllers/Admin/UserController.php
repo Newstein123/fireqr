@@ -75,7 +75,7 @@ class UserController extends ResponseController
         ]);
 
         $user->assignRole($request->role);
-        return redirect()->route('userIndex');
+        return redirect()->route('userIndex')->with('message', 'User Updated Successfully');
     }
 
     public function change_state(Request $request)

@@ -18,6 +18,7 @@
 {{-- @include('frontend.layouts.parts.footer') --}}
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
 <script src="{{asset('/js/plugins/splide/splide.min.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
 </body>

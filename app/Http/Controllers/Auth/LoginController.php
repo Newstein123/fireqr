@@ -28,7 +28,7 @@ class LoginController extends Controller
      */
     protected function authenticated()
     {
-        if(!auth()->user()->hasRole('user')) {
+        if(!auth()->user()->hasRole('user') && auth()->user()->status == 0) {
             return redirect('/admin/dashboard')->with('message', 'Welcome to Admin Dashboard');
         } else {
             return redirect()->back()->with('message', 'Access Denied');

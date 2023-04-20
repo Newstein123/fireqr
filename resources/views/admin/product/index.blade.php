@@ -1,11 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', 'Product Page')
 @section('content')
-@if (session('message'))
-    <div class="alert alert-success">
-        {{session('message')}}
-    </div>
-@endif
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2> Product </h2>
