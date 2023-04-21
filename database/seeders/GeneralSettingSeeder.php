@@ -32,7 +32,7 @@ class GeneralSettingSeeder extends Seeder
         ]);
         GeneralSetting::create([
             'name' => 'qr-logo',
-            'value' => 'မီးသတ်ဦးစီးဌာန',
+            'value' => 'logo.png',
             'type' => 'string',
         ]);
     }

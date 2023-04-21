@@ -72,7 +72,7 @@
                         <tfoot>
                         <tr>
                             <th> Id </th>
-                            <th> Product Name </th>
+                            <th> Category Name </th>
                             <th> Date </th>
                             <th> Action </th>
                         </tr>

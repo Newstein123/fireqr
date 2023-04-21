@@ -18,7 +18,7 @@
             @endphp   
             @if (count($images) > 1)
                 <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
-                    <div class="splide__rowack">
+                    <div class="splide__track">
                         <ul class="splide__list">
                         @foreach (json_decode($product->image) as $image)
                         <li class="splide__slide">
@@ -38,7 +38,7 @@
                         <img src="{{asset('img/fire_vehicles/'.$image)}}" alt="" />
                     </li>
                     @endforeach
-                </ul> 
+                </ul>   
             @else 
                 <div class="text-center">
                     <img src="{{asset('/img/fire_vehicles/'.$images[0])}}" alt="" class="img-fluid w-50">
