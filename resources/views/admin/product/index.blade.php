@@ -58,7 +58,7 @@
                                     <tr class="gradeU">
                                         <td> {{ $id++ }} </td>
                                         <td> {{ $product->name }}</td>
-                                        <td> {{ $product->type }}</td>
+                                        <td> {{ $product->category->name }}</td>
                                         <td> {{$product->created_at->toFormattedDateString() }} </td>
                                         <td>
                                             <div class="d-flex align-items-center">

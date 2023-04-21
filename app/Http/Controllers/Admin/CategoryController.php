@@ -76,9 +76,14 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $category = Category::findOrFail($id);
-
+    {   
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'ပစ္စည်းအမျိုးအစား လိုအပ်ပါသည်'
+        ]);
+        
+        $category = Category::findOrFail($id);       
         $category->update([
             'name' => $request->name,
         ]);

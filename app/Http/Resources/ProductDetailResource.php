@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class ProductDetailResource extends JsonResource
 {
@@ -22,12 +23,12 @@ class ProductDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'type' => $this->type,
+            'type' => $this->category->name,
             'model_no' => $this->model_no ?? '',
             'country' => $this->country ?? '',
             'company_name' => $this->company_name ?? '',
             'manufactured_year' => date('Y', strtotime($this->manufactured_year)) ?? '',
-            'start_date' => $this->start_date ?? '',
+            'start_date' => Carbon::parse($this->start_date)->format('d/m/Y'),
             'usage' => $this->usage ?? '',
             'detail' => $this->description ?? '',
             'publish' => $this->publish ?? '',

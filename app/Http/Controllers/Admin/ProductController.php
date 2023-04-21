@@ -17,7 +17,9 @@ class ProductController extends Controller
     {   
         if($search = request()->input('search')) {
             $products = Product::where('name', 'like', "%$search%")
-            ->orWhere('type', 'like', "%$search%")
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%");
+            })
             ->orWhere('company_name', 'like',"%$search%")
             ->orWhere('country', 'like', "%$search%")
             ->paginate(10)->withQueryString();
