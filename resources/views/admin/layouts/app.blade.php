@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> {{ generalSetting('title') }} | @yield('title') </title>
-    <link rel="shortcut icon" href="{{asset('img/logo/'.generalSetting('logo'))}}" type="image/jpg">
+    <link rel="shortcut icon" href="{{asset('img/logo/'.generalSetting('logo'))}}" type="image/png">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">

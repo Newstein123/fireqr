@@ -12,6 +12,10 @@
         </div>
     </div> --}}
     <div class="container mt-3">
+        <div class="text-center">
+            <img src="{{ asset('img/logo/'.generalSetting('logo')) }}" alt="logo" width="100px" height="100px">
+            <p class="my-3">{{generalSetting('title') }}</p>
+        </div>
         <div class="ibox-img">
             @php
                 $images = json_decode($product->image)
@@ -47,10 +51,10 @@
         </div>
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="my-3"> {{ $product->type  }}</h3>
+                    <h3 class="my-3"> {{ $product->name  }}</h3>
                     <div class="row my-3">
-                        <div class="col-5 col-md-4"> ပစ္စည်းအမျိုးအမည် </div>
-                        <div class="col-7 col-md-8"> - {{ $product->name }}</div>
+                        <div class="col-5 col-md-4"> ပစ္စည်းအမျိုးအစား </div>
+                        <div class="col-7 col-md-8"> - {{ $product->category->name }}</div>
                     </div>
                     @if ($product->company_name) 
                         <div class="row my-3">

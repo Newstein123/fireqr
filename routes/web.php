@@ -21,8 +21,8 @@ use App\Http\Controllers\Admin\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/home', function() {
-    return view('home');
+Route::get('/', function() {
+    return redirect()->route('login');
 });
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -92,7 +92,7 @@ Route::prefix('admin')->middleware(['role:super-admin|admin|editor', 'admin'])->
 
 // Frontend 
 
-Route::get('/', [FrontendProductController::class, 'index'])->name('home');
+// Route::get('/', [FrontendProductController::class, 'index'])->name('home');
 Route::get('/product/{id}', [FrontendProductController::class, 'show'])->name('productDetail');
 
 Route::get('/test/splide', function() {

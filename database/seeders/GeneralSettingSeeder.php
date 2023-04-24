@@ -33,7 +33,7 @@ class GeneralSettingSeeder extends Seeder
         GeneralSetting::create([
             'name' => 'qr-logo',
             'value' => 'logo.png',
-            'type' => 'string',
+            'type' => 'file',
         ]);
     }
 }
