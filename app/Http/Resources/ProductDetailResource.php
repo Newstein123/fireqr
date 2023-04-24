@@ -35,6 +35,8 @@ class ProductDetailResource extends JsonResource
             'qr_name' => $this->qr_name ?? '',
             'qr_img' => $this->qr_img != '' ? env('APP_URL').'/storage/qr-img/'.$this->qr_img : '',
             'images' => $prefixedImages,
+            'logo' => env('APP_URL').'/img/logo/'.generalSetting('logo'),
+            'title' => generalSetting('title'),
         ];
     }
 }
