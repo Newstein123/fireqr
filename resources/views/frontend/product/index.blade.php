@@ -16,23 +16,27 @@
     </div>
     <div class="container">
         <div class="row">
-            @foreach ($products as $product)
-            @php
-                $image = json_decode($product->image);
-            @endphp
-            <div class="col-md-3">
-                <div class="card my-2">
-                    @if (count($image) > 0)
-                        <img class="card-img-top" src="{{asset('img/fire_vehicles/'.$image[0])}}" alt="Card image cap">
-                    @endif
-                    <div class="card-body">
-                      <h5 class="card-title"> {{$product->name}}</h5>
-                      <p class="card-text"> {{$product->type}} </p>
-                      <a href="{{route('productDetail', $product->id)}}" class="btn btn-secondary btn-sm"> More Detail </a>
+            @if (count($products) > 0)
+                @foreach ($products as $product)
+                @php
+                    $image = json_decode($product->image);
+                @endphp
+                <div class="col-md-3">
+                    <div class="card my-2">
+                        @if (count($image) > 0)
+                            <img class="card-img-top" src="{{asset('img/fire_vehicles/'.$image[0])}}" alt="Card image cap">
+                        @endif
+                        <div class="card-body">
+                        <h5 class="card-title"> {{$product->name}}</h5>
+                        <p class="card-text"> {{$product->type}} </p>
+                        <a href="{{route('productDetail', $product->id)}}" class="btn btn-secondary btn-sm"> More Detail </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            @else 
+                <div class="text-center text-danger"> There is no data </div>
+            @endif
         </div>
         {{$products->links()}}
     </div>

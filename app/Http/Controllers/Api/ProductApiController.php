@@ -14,7 +14,7 @@ class ProductApiController extends Controller
     {     
         $page = request('page') ?? 1;
         $perpage = request('perpage') ?? 10;
-        $data = Product::orderBy('id', 'desc')->get();
+        $data = Product::orderBy('id', 'desc')->where('publish' , 0)->get();
         $total = count($data);
         $products = Product::offset(($page - 1) * $perpage)->limit($perpage)->get();
         return ProductResource::collection($products)->additional([

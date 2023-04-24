@@ -68,7 +68,8 @@ class ProductController extends Controller
         $last_product = Product::latest()->first();
         // Store QR Image 
         $qr_name = generateRandomString(10);
-        $qr_img = storeQrImage('qr-img/', $last_product->id + 1);
+        $product_id = $last_product->id + 1;
+        $qr_img = storeQrImage('qr-img/', $product_id );
 
         // Store Fire Vehicle Image 
 
@@ -80,6 +81,7 @@ class ProductController extends Controller
         }
 
         Product::create([
+            'id' => $product_id,
             'name' => $request->name,
             'category_id' => $request->type,
             'model_no' => $request->model_no ?? null,
