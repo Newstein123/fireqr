@@ -30,33 +30,38 @@
             </div>
         </div>
         <div class="ibox-content">
-            <div class="ibox-img">
-                <section id="main-slider" class="splide" aria-label="My Awesome Gallery">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                        @foreach (json_decode($product->image) as $image)
-                        <li class="splide__slide" style="height: {{getimagesize(public_path('img/original/'.$image))[1]}}px;">
+            <div class="ibox-img d-flex justify-content-center align-items-center">  
+                @if (count(json_decode($product->image)) > 1)
+                <div id="carouselExampleControls" class="carousel slide  w-75">
+                    <div class="carousel-inner">
+                        @foreach (json_decode($product->image) as $key=>$image)
+                        <div class="carousel-item {{$key == 0 ? 'active' : ''}} ">
                             @if (file_exists(public_path('img/original/'.$image)))
-                                <img src="{{asset('img/original/'.$image)}}"/>
-                            @else 
-                                <img src="{{asset('img/fire_vehicles/'.$image)}}"/>
+                                <img src="{{asset('img/original/'.$image)}}" class="d-block w-100" alt="...">
+                            @else
+                                <img src="{{asset('img/fire_vehicles/'.$image)}}" class="d-block w-100" alt="...">
                             @endif
-                        </li>
+                        </div>
                         @endforeach
-                        </ul>
                     </div>
-                </section>
-                <ul id="thumbnails" class="thumbnails">                
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bg-danger p-2 rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only" class="bg-danger">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon bg-danger p-2 rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </div>
+                @else
                     @foreach (json_decode($product->image) as $image)
-                    <li class="thumbnail">
                         @if (file_exists(public_path('img/original/'.$image)))
-                            <img src="{{asset('img/original/'.$image)}}"/>
-                        @else 
-                            <img src="{{asset('img/fire_vehicles/'.$image)}}"/>
+                            <img src="{{asset('img/original/'.$image)}}" class="d-block w-75" alt="...">
+                        @else
+                            <img src="{{asset('img/fire_vehicles/'.$image)}}" class="d-block w-75" alt="...">
                         @endif
-                    </li>
                     @endforeach
-                </ul>   
+                @endif
             </div>
             <div class="table-responsive my-3">
                 <table class="table table-bordered">
