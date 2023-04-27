@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductDetailResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class ProductApiController extends Controller
 {
@@ -16,8 +18,8 @@ class ProductApiController extends Controller
         $perpage = request('perpage') ?? 10;
         $data = Product::orderBy('id', 'desc')->where('publish' , 0)->get();
         $total = count($data);
-        $products = Product::offset(($page - 1) * $perpage)->limit($perpage)->get();
-        return ProductResource::collection($products)->additional([
+        $categories = Category::with('product')->offset(($page - 1) * $perpage)->limit($perpage)->get();
+        return CategoryResource::collection($categories)->additional([
             'total' => $total,
             'success' => true,
         ]);
