@@ -1,6 +1,10 @@
-.splide__slide img {
-    width: 100%;
+  .splide__slide img  {
+    object-fit: contain;
+    object-position: center;
+    max-height: 100%;
+    max-width: 100%;
     height: auto;
+    width: auto;
   }
 
   /* Thumbnail Curosel  */

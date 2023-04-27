@@ -18,7 +18,11 @@ class ProductDetailResource extends JsonResource
         $images = json_decode($this->image);
         $prefixedImages = [];
         foreach ($images as $image) {
-            $prefixedImages[] = env('APP_URL').'/img/fire_vehicles/' . $image;
+            if(file_exists(public_path('img/original/'.$image))) {
+                $prefixedImages[] = env('APP_URL').'/img/original/'. $image;
+            } else {
+                $prefixedImages[] = env('APP_URL').'/img/fire_vehicles/'. $image;
+            }
         }
         return [
             'id' => $this->id,

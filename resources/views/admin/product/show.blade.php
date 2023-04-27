@@ -35,12 +35,12 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                         @foreach (json_decode($product->image) as $image)
-                        <li class="splide__slide">
-                            <img
-                            src="{{asset('img/original/'.$image)}}"
-                            alt=""
-                            class="w-100"
-                            />
+                        <li class="splide__slide" style="height: {{getimagesize(public_path('img/original/'.$image))[1]}}px;">
+                            @if (file_exists(public_path('img/original/'.$image)))
+                                <img src="{{asset('img/original/'.$image)}}"/>
+                            @else 
+                                <img src="{{asset('img/fire_vehicles/'.$image)}}"/>
+                            @endif
                         </li>
                         @endforeach
                         </ul>
@@ -49,7 +49,11 @@
                 <ul id="thumbnails" class="thumbnails">                
                     @foreach (json_decode($product->image) as $image)
                     <li class="thumbnail">
-                        <img src="{{asset('img/original/'.$image)}}" alt="" />
+                        @if (file_exists(public_path('img/original/'.$image)))
+                            <img src="{{asset('img/original/'.$image)}}"/>
+                        @else 
+                            <img src="{{asset('img/fire_vehicles/'.$image)}}"/>
+                        @endif
                     </li>
                     @endforeach
                 </ul>   
