@@ -24,12 +24,13 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
     // uploadImage 
     function uploadImage($image, $directory) {
       $filename = time() .'_'.$image->getClientOriginalName();
-            $path = public_path($directory);
-            $img = Image::make($image->path());
-            $img->fit(400,300, function ($constraint) {
+      $path = public_path($directory);
+      $img = Image::make($image->path());
+      $img->fit(400,300, function ($constraint) {
 				$constraint->aspectRatio();
 			})->save($path.'/'.$filename);
-
+      // Storing Original Imgae 
+      $image->move(public_path('img/original'), $filename);
       return $filename;
     }
 

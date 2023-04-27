@@ -37,7 +37,7 @@
                         @foreach (json_decode($product->image) as $image)
                         <li class="splide__slide">
                             <img
-                            src="{{asset('img/fire_vehicles/'.$image)}}"
+                            src="{{asset('img/original/'.$image)}}"
                             alt=""
                             class="w-100"
                             />
@@ -49,7 +49,7 @@
                 <ul id="thumbnails" class="thumbnails">                
                     @foreach (json_decode($product->image) as $image)
                     <li class="thumbnail">
-                        <img src="{{asset('img/fire_vehicles/'.$image)}}" alt="" />
+                        <img src="{{asset('img/original/'.$image)}}" alt="" />
                     </li>
                     @endforeach
                 </ul>   
