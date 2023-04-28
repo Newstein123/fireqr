@@ -19,7 +19,7 @@
             @if (count($products) > 0)
                 @foreach ($products as $product)
                 @php
-                    $image = json_decode($product->image);
+                    $image = json_decode($product->image); 
                 @endphp
                 <div class="col-md-3">
                     <div class="card my-2">
@@ -39,5 +39,5 @@
             @endif
         </div>
         {{$products->links()}}
-    </div>
+    </div>  
 @endsection
